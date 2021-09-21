@@ -1,7 +1,7 @@
 import { TextDictionary } from "./dictionary.ts";
 
 export async function withTemporaryDictionary(
-  test: (dic: TextDictionary) => Promise<void>
+  test: (dic: TextDictionary) => Promise<void>,
 ): Promise<void> {
   const dictionary = new TextDictionary();
   const tmpdic = await Deno.makeTempFile();
@@ -15,7 +15,7 @@ export function json(str: TemplateStringsArray, ...val: unknown[]): string {
   let out = "";
   for (let i = 0; i < str.length; i++) {
     out += str[i];
-    out += val[i] ? JSON.stringify(val[i]) : '';
+    out += val[i] ? JSON.stringify(val[i]) : "";
   }
   return out;
 }

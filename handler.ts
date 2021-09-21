@@ -16,8 +16,7 @@ export class Handler {
       case "1":
         return {
           type: request.type,
-          body:
-            "1/" +
+          body: "1/" +
             (await this.#dictionary.convert(request.body))
               .map((w) => w + "/")
               .join("") +
@@ -36,8 +35,7 @@ export class Handler {
       case "4":
         return {
           type: request.type,
-          body:
-            "4/" +
+          body: "4/" +
             (await this.#dictionary.complete(request.body))
               .map((w) => w + "/")
               .join("") +

@@ -1,3 +1,5 @@
+import iconv from "iconv";
+
 export interface Dictionary {
   convert(entry: string): Promise<string[]>;
   complete(entry: string): Promise<string[]>;
@@ -5,13 +7,14 @@ export interface Dictionary {
 
 export class TextDictionary implements Dictionary {
   #table: Map<string, string[]> = new Map();
-  async load(path: string, label = "euc-jp"): Promise<void> {
+  async load(path: string, encording = "euc-jp"): Promise<void> {
     const blob = await Deno.readFile(path);
-    const decoder = new TextDecoder(label);
-    const src = decoder.decode(blob);
+    const src = iconv.decode(blob, encording);
     for (const match of src.matchAll(/^([^;].*) \/(.*)\/$/gm)) {
       const key = match[1];
-      const value = match[2].split("/").map((c) => c.replace(/;.*$/, ""));
+      const value = match[2].split("/").map((c: string) =>
+        c.replace(/;.*$/, "")
+      );
       this.#table.set(key, value);
     }
   }
