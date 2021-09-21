@@ -1,13 +1,13 @@
 import { Dictionary } from "./dictionary.ts";
-import { SKKRequest } from "./request.ts";
-import { SKKResponse } from "./response.ts";
+import { Request } from "./request.ts";
+import { Response } from "./response.ts";
 
 export class Handler {
   #dictionary: Dictionary;
   constructor(dictionary: Dictionary) {
     this.#dictionary = dictionary;
   }
-  async handle(request: SKKRequest): Promise<SKKResponse> {
+  async handle(request: Request): Promise<Response> {
     switch (request.type) {
       case "0":
         return {

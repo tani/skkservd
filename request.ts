@@ -16,15 +16,15 @@ interface CompletionRequest {
   body: string;
 }
 
-export type SKKRequest =
+export type Request =
   | QuitRequest
   | ConversionRequest
   | VersionRequest
   | InformationRequest
   | CompletionRequest;
 
-export function parse(str: string): SKKRequest {
-  let request: SKKRequest;
+export function parse(str: string): Request {
+  let request: Request;
   let body: string | undefined;
   const type = str.at(0);
   switch (type) {

@@ -18,7 +18,7 @@ interface CompletionResponse {
   body: string;
 }
 
-export type SKKResponse =
+export type Response =
   | QuitResponse
   | ConversionResponse
   | VersionResponse
