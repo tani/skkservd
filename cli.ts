@@ -8,6 +8,6 @@ const options = parse(Deno.args, {
   },
 });
 const dictionary = new TextDictionary();
-await dictionary.load(options.dictionary, "euc-jp");
+await dictionary.load(options.dictionary);
 const server = new Server(dictionary);
 server.listen(options as any);
