@@ -7,7 +7,7 @@ skkserv implementation in deno.
 ## Usage
 
 ```
-$ deno install --allow-net --allow-read --import-map https://raw.githubusercontent.com/tani/skkservd/main/import_map.json \
+$ deno install --allow-net --allow-read --name skkservd --import-map https://raw.githubusercontent.com/tani/skkservd/main/import_map.json \
   https://raw.githubusercontent.com/tani/skkservd/main/cli.ts 
 $ skkservd
 $ #or skkservd --port=1178 --dictionary /user/share/skk/SKK-JISYO.L
