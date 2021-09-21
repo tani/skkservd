@@ -15,7 +15,8 @@ $ #or skkservd --port=1178 --dictionary /user/share/skk/SKK-JISYO.L
 
 ## Related project
 
-This project is inspired by [tani/cl-skkserv](https://github.com/tani/cl-skkserv).
+This project is inspired by
+[tani/cl-skkserv](https://github.com/tani/cl-skkserv).
 
 ## License
 

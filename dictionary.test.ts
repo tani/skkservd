@@ -10,9 +10,7 @@ Deno.test("text dictionary load", async () => {
         "あめ": ["雨", "飴"],
       },
     );
-    return new Promise((resolve) => {
-      resolve();
-    });
+    return Promise.resolve();
   });
 });
 
