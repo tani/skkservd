@@ -1,13 +1,20 @@
 import { TextDictionary } from "./dictionary.ts";
 
+const rawDic = `
+;; okuri-ari entries
+あi /合い/会い/
+;; okuri-nasi entries
+あめ /雨/飴/
+`;
+
 export async function withTemporaryDictionary(
   test: (dic: TextDictionary) => Promise<void>,
 ): Promise<void> {
   const dictionary = new TextDictionary();
-  const tmpdic = await Deno.makeTempFile();
-  await Deno.writeTextFile(tmpdic, "あi /合い/会い/\n" + "あめ /雨/飴/\n");
-  await dictionary.load(tmpdic, "utf-8");
-  await Deno.remove(tmpdic);
+  const tmp = await Deno.makeTempFile();
+  await Deno.writeTextFile(tmp, rawDic);
+  await dictionary.load(tmp, "utf-8");
+  await Deno.remove(tmp);
   await test(dictionary);
 }
 

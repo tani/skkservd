@@ -8,20 +8,18 @@ export class Handler {
     this.#dictionary = dictionary;
   }
   async handle(request: Request): Promise<Response> {
+    let candidates: string[];
     switch (request.type) {
       case "0":
         return {
           type: request.type,
         };
       case "1":
-        return {
-          type: request.type,
-          body: "1/" +
-            (await this.#dictionary.convert(request.body))
-              .map((w) => w + "/")
-              .join("") +
-            "\n",
-        };
+        candidates = await this.#dictionary.convert(request.body);
+        if (candidates.length === 0) {
+          return { type: "4", body: "4" + request.body + "\n" };
+        }
+        return { type: "1", body: "1/" + candidates.join("/") + "/\n" };
       case "2":
         return {
           type: request.type,
@@ -33,14 +31,11 @@ export class Handler {
           body: "hostname:addr:...: ",
         };
       case "4":
-        return {
-          type: request.type,
-          body: "4/" +
-            (await this.#dictionary.complete(request.body))
-              .map((w) => w + "/")
-              .join("") +
-            "\n",
-        };
+        candidates = await this.#dictionary.complete(request.body);
+        if (candidates.length === 0) {
+          return { type: "4", body: "4" + request.body + "\n" };
+        }
+        return { type: "1", body: "1/" + candidates.join("/") + "/\n" };
     }
   }
 }

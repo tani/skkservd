@@ -11,12 +11,21 @@ Deno.test("handle 0-request", async () => {
     );
   });
 });
-Deno.test("handle 1-request", async () => {
+Deno.test("handle 1-request (found)", async () => {
   await withTemporaryDictionary(async (dictionary) => {
     const handler = new Handler(dictionary);
     assertEquals(
       await handler.handle({ type: "1", body: "あi" }),
       { type: "1", body: "1/合い/会い/\n" },
+    );
+  });
+});
+Deno.test("handle 1-request (not found)", async () => {
+  await withTemporaryDictionary(async (dictionary) => {
+    const handler = new Handler(dictionary);
+    assertEquals(
+      await handler.handle({ type: "1", body: "いi" }),
+      { type: "4", body: "4いi\n" },
     );
   });
 });
@@ -38,12 +47,21 @@ Deno.test("handle 3-request", async () => {
     );
   });
 });
-Deno.test("handle 4-request", async () => {
+Deno.test("handle 4-request (found)", async () => {
   await withTemporaryDictionary(async (dictionary) => {
     const handler = new Handler(dictionary);
     assertEquals(
       await handler.handle({ type: "4", body: "あ" }),
-      { type: "4", body: "4/あi/あめ/\n" },
+      { type: "1", body: "1/あめ/\n" },
+    );
+  });
+});
+Deno.test("handle 4-request (not found)", async () => {
+  await withTemporaryDictionary(async (dictionary) => {
+    const handler = new Handler(dictionary);
+    assertEquals(
+      await handler.handle({ type: "4", body: "い" }),
+      { type: "4", body: "4い\n" },
     );
   });
 });
