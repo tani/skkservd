@@ -11,31 +11,23 @@ export class Handler {
     let candidates: string[];
     switch (request.type) {
       case "0":
-        return {
-          type: request.type,
-        };
+        return { ...request };
       case "1":
         candidates = await this.#dictionary.convert(request.body);
         if (candidates.length === 0) {
-          return { type: "4", body: "4" + request.body + "\n" };
+          return { ...request, body: "4" + request.body + "\n" };
         }
-        return { type: "1", body: "1/" + candidates.join("/") + "/\n" };
+        return { ...request, body: "1/" + candidates.join("/") + "/\n" };
       case "2":
-        return {
-          type: request.type,
-          body: "0.0.0 ",
-        };
+        return { ...request, body: "0.0.0 " };
       case "3":
-        return {
-          type: request.type,
-          body: "hostname:addr:...: ",
-        };
+        return { ...request, body: "hostname:addr:...: " };
       case "4":
         candidates = await this.#dictionary.complete(request.body);
         if (candidates.length === 0) {
-          return { type: "4", body: "4" + request.body + "\n" };
+          return { ...request, body: "4" + request.body + "\n" };
         }
-        return { type: "1", body: "1/" + candidates.join("/") + "/\n" };
+        return { ...request, body: "1/" + candidates.join("/") + "/\n" };
     }
   }
 }

@@ -25,7 +25,7 @@ Deno.test("handle 1-request (not found)", async () => {
     const handler = new Handler(dictionary);
     assertEquals(
       await handler.handle({ type: "1", body: "いi" }),
-      { type: "4", body: "4いi\n" },
+      { type: "1", body: "4いi\n" },
     );
   });
 });
@@ -52,7 +52,7 @@ Deno.test("handle 4-request (found)", async () => {
     const handler = new Handler(dictionary);
     assertEquals(
       await handler.handle({ type: "4", body: "あ" }),
-      { type: "1", body: "1/あめ/\n" },
+      { type: "4", body: "1/あめ/\n" },
     );
   });
 });
