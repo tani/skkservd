@@ -29,6 +29,7 @@ Deno.test("text dictionary complete", async () => {
 });
 
 Deno.test("convertNumber", () => {
+  assertEquals(convertNumber("#0番", "#ばん"), "#番");
   assertEquals(convertNumber("#0番", "11ばん"), "11番");
   assertEquals(convertNumber("#1番", "11ばん"), "１１番");
   assertEquals(convertNumber("#2番", "11ばん"), "一一番");

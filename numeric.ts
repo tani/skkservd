@@ -18,7 +18,7 @@ function toKanjiModern(n: number): string {
 const toKanjiClassic: (n: number) => string = JpNum.number2kanji;
 
 export function convertNumber(pattern: string, entry: string): string {
-  return R.zip(pattern.split(/(#[0-9]?)/g), entry.split(/([0-9]+)/g))
+  return R.zip(pattern.split(/(#[0-9]?)/g), entry.split(/(#|[0-9]+)/g))
     .map(([k, e]) => {
       switch (k) {
         case "#":
