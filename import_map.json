@@ -1,8 +1,8 @@
 {
   "imports": {
     "std/": "https://deno.land/std@0.107.0/",
-    "rambda": "https://esm.sh/rambda@6",
-    "iconv": "https://esm.sh/iconv-lite?no-check",
-    "jpnum": "https://esm.sh/@geolonia/japanese-numeral@0.1.x"
+    "rambda": "npm:rambda@9",
+    "iconv": "npm:iconv-lite@0.6.3",
+    "jpnum": "npm:@geolonia/japanese-numeral@1"
   }
 }
